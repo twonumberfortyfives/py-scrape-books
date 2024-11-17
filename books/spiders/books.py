@@ -23,7 +23,9 @@ class BooksSpider(scrapy.Spider):
             book_data = {
                 "title": book.css("a::attr(title)").get(),
                 "price": float(book.css("p.price_color::text").get().replace("£", "")),
-                "rating": help_dict_rating[book.css("p.star-rating::attr(class)").get().split()[-1]],
+                "rating": help_dict_rating[
+                    book.css("p.star-rating::attr(class)").get().split()[-1]
+                ],
             }
 
             yield Request(
